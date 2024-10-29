@@ -1,4 +1,15 @@
-import { defineComponent, createVNode, openBlock, createElementBlock, createTextVNode } from "vue";
+import { defineComponent, createVNode } from "vue";
+const version = "0.1.0";
+const componentPrefix = "S";
+function withInstall(options) {
+  options.install = (app) => {
+    const { name } = options;
+    if (name) {
+      app.component(componentPrefix + name, options);
+    }
+  };
+  return options;
+}
 const props = {
   size: {
     type: String,
@@ -21,7 +32,7 @@ const props = {
     default: ""
   }
 };
-const SButton = /* @__PURE__ */ defineComponent({
+const _Button = /* @__PURE__ */ defineComponent({
   name: "SButton",
   props,
   setup(props2, {
@@ -65,37 +76,64 @@ const SButton = /* @__PURE__ */ defineComponent({
     }, null) : "", slots.default ? slots.default() : ""]);
   }
 });
-const _sfc_main = {
-  name: "SFCButton"
-};
-const _export_sfc = (sfc, props2) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props2) {
-    target[key] = val;
+const Button = withInstall(_Button);
+const linkProps = {
+  size: {
+    type: String,
+    default: "medium"
+  },
+  color: {
+    type: String,
+    default: "purple"
   }
-  return target;
 };
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("button", null, "SFC Button");
-}
-const SFCButton = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
-const TSXButton = /* @__PURE__ */ defineComponent({
-  name: "TSXButton",
-  render() {
-    return createVNode("button", null, [createTextVNode(" TSX Button")]);
+const _Link = /* @__PURE__ */ defineComponent({
+  name: "Link",
+  props: linkProps,
+  setup(props2, {
+    slots
+  }) {
+    const size = {
+      small: {
+        x: "2",
+        y: "1",
+        text: "sm"
+      },
+      medium: {
+        x: "3",
+        y: "1.5",
+        text: "base"
+      },
+      large: {
+        x: "4",
+        y: "2",
+        text: "lg"
+      }
+    };
+    return () => createVNode("a", {
+      "class": ` 
+              hover:text-white
+              cursor-pointer
+              py-${size[props2.size].y}
+              px-${size[props2.size].x}
+              text-${`${props2.color}-500`}
+              text-${size[props2.size].text}
+              hover:bg-${props2.color}-400
+              `
+    }, [createVNode("span", null, [" ", slots.default ? slots.default() : "默认链接", " "])]);
   }
 });
+const Link = withInstall(_Link);
+const plugins = [Link, Button];
 const entry = {
   install(app) {
-    app.component(SButton.name, SButton);
-    app.component(SFCButton.name, SFCButton);
-    app.component(TSXButton.name, TSXButton);
-  }
+    plugins.forEach((c) => app.use(c));
+  },
+  version
 };
 export {
-  SButton,
-  SFCButton,
-  TSXButton,
-  entry as default
+  Button,
+  Link,
+  entry as default,
+  linkProps
 };
-//# sourceMappingURL=ssy-ui.js.map
