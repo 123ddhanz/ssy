@@ -5,6 +5,7 @@
   "description": "",
   "author": "",
   "license": "ISC",
+  "homepage": "https://ssy.vercel.app/",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -29,7 +30,6 @@
     "docs:serve": "vitepress serve docs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky",
     "build:all": "vite build",
     "build:components": "tsx ./scripts/build.ts",
     "build": "pnpm build:components && tsc -b tsconfig.types.json"
@@ -50,13 +50,15 @@
     "fs-extra": "^11.2.0",
     "happy-dom": "15.7.4",
     "husky": "^9.1.6",
+    "terser": "^5.36.0",
     "tsx": "^4.19.1",
     "typescript": "^5.6.3",
     "unocss": "^0.62.4",
-    "vite": "^5.4.9",
+    "vite": "^5.4.10",
     "vitepress": "^1.4.1",
     "vitepress-theme-demoblock": "3.0.7",
-    "vitest": "2.1.2"
+    "vitest": "2.1.2",
+    "vue-tsc": "^2.0.29"
   },
   "publishConfig": {
     "access": "public",

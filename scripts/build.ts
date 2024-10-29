@@ -1,10 +1,11 @@
 import type { InlineConfig } from 'vite'
 import path from 'node:path'
-import { URL } from 'node:url'
+import { fileURLToPath } from 'node:url'
+// import { URL } from 'node:url'
 import fs from 'fs-extra'
 import { build } from 'vite'
 
-const __dirname = new URL('.', import.meta.url).pathname
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // 全量打包
 const buildAll = async () => {

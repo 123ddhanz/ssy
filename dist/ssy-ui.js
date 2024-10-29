@@ -10,32 +10,40 @@ function withInstall(options) {
   };
   return options;
 }
-const props = {
-  size: {
-    type: String,
-    default: "medium"
-  },
+const buttonProps = {
+  // 颜色
   color: {
     type: String,
     default: "blue"
   },
+  /**
+   * 尺寸
+   * @example 'small' | 'medium' | 'large'
+   */
+  size: {
+    type: String,
+    default: "medium"
+  },
+  // 是否圆角
   round: {
     type: Boolean,
     default: false
   },
+  // 是否扁平
   plain: {
     type: Boolean,
     default: false
   },
+  // 图标
   icon: {
     type: String,
     default: ""
   }
 };
 const _Button = /* @__PURE__ */ defineComponent({
-  name: "SButton",
-  props,
-  setup(props2, {
+  name: "Button",
+  props: buttonProps,
+  setup(props, {
     slots
   }) {
     const size = {
@@ -57,22 +65,23 @@ const _Button = /* @__PURE__ */ defineComponent({
     };
     return () => createVNode("button", {
       "class": `
-          py-${size[props2.size].y}
-          px-${size[props2.size].x}
-          ${props2.round ? "rounded-full" : "rounded-lg"}
-          bg-${props2.color}-${props2.plain ? "100" : "500"}
-          hover:bg-${props2.color}-400
-          border-${props2.color}-${props2.plain ? "500" : "500"}
+          mx-1
+          hover:scale-105
+          hover:text-white
+          transition duration-300 ease-in-out transform
+          py-${size[props.size].y}
+          px-${size[props.size].x}
+          ${props.round ? "rounded-full" : "rounded-lg"}
+          bg-${props.color}-${props.plain ? "100" : "500"}
+          hover:bg-${props.color}-400
+          border-${props.color}-${props.plain ? "500" : "500"}
           cursor-pointer
           border-solid
-          text-${props2.plain ? `${props2.color}-500` : "white"}
-          text-${size[props2.size].text}
-          hover-text-white=""
-          transition="" duration-300="" ease-in-out="" transform="" hover-scale-105=""
-          mx-1=""
+          text-${props.plain ? `${props.color}-500` : "white"}
+          text-${size[props.size].text}
           `
-    }, [props2.icon !== "" ? createVNode("i", {
-      "class": `i-ic-baseline-${props2.icon} p-3`
+    }, [props.icon !== "" ? createVNode("i", {
+      "class": `i-ic-baseline-${props.icon} p-3`
     }, null) : "", slots.default ? slots.default() : ""]);
   }
 });
@@ -90,7 +99,7 @@ const linkProps = {
 const _Link = /* @__PURE__ */ defineComponent({
   name: "Link",
   props: linkProps,
-  setup(props2, {
+  setup(props, {
     slots
   }) {
     const size = {
@@ -114,11 +123,11 @@ const _Link = /* @__PURE__ */ defineComponent({
       "class": ` 
               hover:text-white
               cursor-pointer
-              py-${size[props2.size].y}
-              px-${size[props2.size].x}
-              text-${`${props2.color}-500`}
-              text-${size[props2.size].text}
-              hover:bg-${props2.color}-400
+              py-${size[props.size].y}
+              px-${size[props.size].x}
+              text-${`${props.color}-500`}
+              text-${size[props.size].text}
+              hover:bg-${props.color}-400
               `
     }, [createVNode("span", null, [" ", slots.default ? slots.default() : "默认链接", " "])]);
   }
@@ -134,6 +143,7 @@ const entry = {
 export {
   Button,
   Link,
+  buttonProps,
   entry as default,
   linkProps
 };

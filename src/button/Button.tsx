@@ -1,9 +1,9 @@
-import type { PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent } from 'vue'
-import 'uno.css'
+import 'virtual:uno.css'
 
-export type ISize = 'small' | 'medium' | 'large'
-export type IColor =
+export type ButtonSize = 'small' | 'medium' | 'large'
+export type ButtonColor =
   | 'black'
   | 'gray'
   | 'red'
@@ -14,36 +14,45 @@ export type IColor =
   | 'purple'
   | 'pink'
 
-export const props = {
-  size: {
-    type: String as PropType<ISize>,
-    default: 'medium',
-  },
-
+export const buttonProps = {
+  // 颜色
   color: {
-    type: String as PropType<IColor>,
+    type: String as PropType<ButtonColor>,
     default: 'blue',
   },
 
+  /**
+   * 尺寸
+   * @example 'small' | 'medium' | 'large'
+   */
+  size: {
+    type: String as PropType<ButtonSize>,
+    default: 'medium',
+  },
+
+  // 是否圆角
   round: {
     type: Boolean,
     default: false,
   },
 
+  // 是否扁平
   plain: {
     type: Boolean,
     default: false,
   },
-
+  // 图标
   icon: {
     type: String,
     default: '',
   },
 } as const
 
+export type ButtonProps = ExtractPropTypes<typeof buttonProps>
+
 export default defineComponent({
-  name: 'SButton',
-  props,
+  name: 'Button',
+  props: buttonProps,
   setup(props, { slots }) {
     const size = {
       small: {
@@ -66,6 +75,10 @@ export default defineComponent({
     return () => (
       <button
         class={`
+          mx-1
+          hover:scale-105
+          hover:text-white
+          transition duration-300 ease-in-out transform
           py-${size[props.size].y}
           px-${size[props.size].x}
           ${props.round ? 'rounded-full' : 'rounded-lg'}
@@ -76,9 +89,6 @@ export default defineComponent({
           border-solid
           text-${props.plain ? `${props.color}-500` : 'white'}
           text-${size[props.size].text}
-          hover:text-white
-          transition duration-300 ease-in-out transform hover:scale-105
-          mx-1
           `}
       >
         {props.icon !== ''
