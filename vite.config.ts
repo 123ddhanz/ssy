@@ -32,7 +32,7 @@ export default defineConfig({
     environment: 'happy-dom',
   },
   build: {
-   // rollupOptions,
+    rollupOptions,
     minify: 'terser', // boolean | 'terser' | 'esbuild'
     sourcemap: false, // 输出单独 source文件
     reportCompressedSize: true, // 生成压缩大小报告
