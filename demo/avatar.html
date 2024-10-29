@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avatar Component Demo</title>
+    <!-- 引入打包后的 JS 文件 -->
+    <script type="module" src="path/to/your/dist/file.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      // 导入 Avatar 组件
+      import { Avatar } from 'path/to/your/dist/file.js'
+
+      // 创建一个 Avatar 组件实例并挂载到页面上
+      const app = document.getElementById('app')
+      const avatar = new Avatar()
+      avatar.mount(app)
+    </script>
+  </body>
+</html>
