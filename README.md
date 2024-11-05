@@ -13,11 +13,11 @@
 
 <p align="center">
 <img src="https://img.shields.io/github/license/123ddhanz/ssy?color=red">
-</p>
-
 <a href="https://codecov.io/gh/123ddhanz/ssy" >
  <img src="https://codecov.io/gh/123ddhanz/ssy/graph/badge.svg?token=2WE0T3JZEF"/>
  </a>
+</p>
+
 ## Features
 
 - 基于Vue框架
