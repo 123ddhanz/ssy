@@ -48,3 +48,8 @@ createApp(App)
 
 ## 欢迎提PR
 一起加入项目
+
+[![codecov](https://codecov.io/gh/123ddhanz/ssy/graph/badge.svg?token=2WE0T3JZEF)](https://codecov.io/gh/123ddhanz/ssy)
+<a href="https://codecov.io/gh/123ddhanz/ssy" >
+ <img src="https://codecov.io/gh/123ddhanz/ssy/graph/badge.svg?token=2WE0T3JZEF"/>
+ </a>
